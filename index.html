@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #35424a;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        .content {
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #35424a;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            display: inline-block;
+            background: #e8491d;
+            color: #ffffff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background: #35424a;
+        }
+        .login-form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Link</span> Management</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" id="admin-link">Admin</a></li>
+                    <li><a href="#" id="victim-link">Victim View</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Admin Dashboard (hidden by default) -->
+        <div id="admin-dashboard" class="content" style="display: none;">
+            <h2>Admin Dashboard</h2>
+            <button class="btn" id="generate-link">Generate New Link</button>
+            
+            <h3>Active Links</h3>
+            <table id="links-table">
+                <thead>
+                    <tr>
+                        <th>Link ID</th>
+                        <th>URL</th>
+                        <th>Status</th>
+                        <th>Victim Info</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample data - would be dynamic in a real implementation -->
+                    <tr>
+                        <td>LNK001</td>
+                        <td>https://example.com/link1</td>
+                        <td>Active</td>
+                        <td>Victim 1 - 192.168.1.1</td>
+                        <td>
+                            <button class="btn">View</button>
+                            <button class="btn">Disable</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>LNK002</td>
+                        <td>https://example.com/link2</td>
+                        <td>Inactive</td>
+                        <td>Victim 2 - 192.168.1.2</td>
+                        <td>
+                            <button class="btn">View</button>
+                            <button class="btn">Enable</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Victim View (hidden by default) -->
+        <div id="victim-view" class="content" style="display: none;">
+            <h2>Victim Portal</h2>
+            <p>Your unique link has been activated. Please wait for further instructions.</p>
+            <div id="victim-status">
+                <p><strong>Status:</strong> <span id="status-text">Connected</span></p>
+                <p><strong>Last Activity:</strong> <span id="last-activity">2 minutes ago</span></p>
+            </div>
+        </div>
+
+        <!-- Login Form (shown by default) -->
+        <div id="login-form" class="content">
+            <h2>Login</h2>
+            <form class="login-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Simple view switching logic
+        document.getElementById('admin-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('admin-dashboard').style.display = 'block';
+            document.getElementById('victim-view').style.display = 'none';
+            document.getElementById('login-form').style.display = 'none';
+        });
+
+        document.getElementById('victim-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('victim-view').style.display = 'block';
+            document.getElementById('admin-dashboard').style.display = 'none';
+            document.getElementById('login-form').style.display = 'none';
+        });
+
+        // Generate link button functionality
+        document.getElementById('generate-link').addEventListener('click', function() {
+            alert('This would generate a new link in a real implementation');
+            // In a real implementation, this would make an API call to generate a new link
+        });
+    </script>
+</body>
+</html>
